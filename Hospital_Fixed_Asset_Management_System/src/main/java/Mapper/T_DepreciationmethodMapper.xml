@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Mapper.T_DepreciationmethodMapper">
+  <resultMap id="BaseResultMap" type="domain.T_Depreciationmethod">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="Name" jdbcType="VARCHAR" property="name" />
+    <result column="Func" jdbcType="VARCHAR" property="func" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, Name, Func
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_depreciationmethod
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByName" parameterType="domain.T_Depreciationmethod" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_depreciationmethod
+    <if test="name != null &#38;&#38; name != ''">
+    where Name = #{name,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_depreciationmethod
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="domain.T_Depreciationmethod">
+    insert into t_depreciationmethod (Id, Name, Func
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{func,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="domain.T_Depreciationmethod">
+    insert into t_depreciationmethod
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="name != null">
+        Name,
+      </if>
+      <if test="func != null">
+        Func,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="func != null">
+        #{func,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="domain.T_Depreciationmethod">
+    update t_depreciationmethod
+    <set>
+      <if test="name != null">
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="func != null">
+        Func = #{func,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="domain.T_Depreciationmethod">
+    update t_depreciationmethod
+    set Name = #{name,jdbcType=VARCHAR},
+      Func = #{func,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

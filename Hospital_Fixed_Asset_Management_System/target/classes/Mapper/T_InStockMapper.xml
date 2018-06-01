@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Mapper.T_InStockMapper">
+  <resultMap id="BaseResultMap" type="domain.T_InStock">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="BuyDate" jdbcType="VARCHAR" property="buyDate" />
+    <result column="TotalCost" jdbcType="DECIMAL" property="totalCost" />
+    <result column="FlowFlag" jdbcType="INTEGER" property="flowFlag" />
+    <result column="InDateT" jdbcType="VARCHAR" property="inDateT" />
+    <association property="billNo" column="BillNo" javaType="domain.T_InStockDtl">
+	<id column="BillNo" jdbcType="VARCHAR" property="id" />
+    <result column="SortCode" jdbcType="INTEGER" property="sortCode" />
+    <result column="Amount" jdbcType="INTEGER" property="amount" />
+    <result column="Price" jdbcType="DECIMAL" property="price" />
+    <result column="AssetId" jdbcType="INTEGER" property="assetId" />
+    </association>
+  </resultMap>
+  <resultMap id="BaseResultMap2" type="domain.T_InStock">
+    <id column="i_id" jdbcType="INTEGER" property="id" />
+    <result column="BuyDate" jdbcType="VARCHAR" property="buyDate" />
+    <result column="TotalCost" jdbcType="DECIMAL" property="totalCost" />
+    <result column="FlowFlag" jdbcType="INTEGER" property="flowFlag" />
+    <result column="InDateT" jdbcType="VARCHAR" property="inDateT" />
+    <association property="billNo" column="BillNo" javaType="domain.T_InStockDtl">
+	<id column="BillNo" jdbcType="VARCHAR" property="id" />
+    <result column="SortCode" jdbcType="INTEGER" property="sortCode" />
+    <result column="Amount" jdbcType="INTEGER" property="amount" />
+    <result column="Price" jdbcType="DECIMAL" property="price" />
+    <result column="AssetId" jdbcType="INTEGER" property="assetId" />
+    </association>
+  </resultMap>
+  <resultMap id="BaseResultMap3" type="domainextand.T_InStock">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="BillNo" jdbcType="VARCHAR" property="billNo"/>
+    <result column="BuyDate" jdbcType="VARCHAR" property="buyDate" />
+    <result column="TotalCost" jdbcType="DECIMAL" property="totalCost" />
+    <result column="FlowFlag" jdbcType="INTEGER" property="flowFlag" />
+    <result column="InDateT" jdbcType="VARCHAR" property="inDateT" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, BillNo, BuyDate, TotalCost, FlowFlag, InDateT
+  </sql>
+  <sql id="Base_Column_List2">
+    i.Id i_id, BillNo, BuyDate, TotalCost, FlowFlag, InDateT,
+  </sql>
+  <sql id="Base_Column_List3">
+    t.Id t_id, SortCode, Amount, Price, AssetId
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_instock
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectById" parameterType="domain.T_InStock" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_instock
+	    <if test="id != null &#38;&#38; id != ''">
+	    where Id = #{id,jdbcType=INTEGER}
+	    </if>
+  </select>
+  <select id="selectbyBillNo" parameterType="domain.T_InStock" resultMap="BaseResultMap2">
+  select * from
+  (select 
+  <include refid="Base_Column_List2" />
+  <include refid="Base_Column_List3" />
+  from t_instock i,t_instockdtl t
+  where i.BillNo = t.Id)a
+  where FlowFlag = 0
+  <if test="id != null &#38;&#38; id != ''">
+  	 and t_id = #{id,jdbcType=VARCHAR} 
+  </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_instock
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="domainextand.T_InStock">
+    insert into t_instock (Id, BillNo, BuyDate, 
+      TotalCost, FlowFlag, InDateT
+      )
+    values (#{id,jdbcType=INTEGER}, #{billNo,jdbcType=VARCHAR}, #{buyDate,jdbcType=VARCHAR}, 
+      #{totalCost,jdbcType=DECIMAL}, #{flowFlag,jdbcType=INTEGER}, #{inDateT,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="domainextand.T_InStock">
+    insert into t_instock
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="billNo != null">
+        BillNo,
+      </if>
+      <if test="buyDate != null">
+        BuyDate,
+      </if>
+      <if test="totalCost != null">
+        TotalCost,
+      </if>
+      <if test="flowFlag != null">
+        FlowFlag,
+      </if>
+      <if test="inDateT != null">
+        InDateT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="billNo != null">
+        #{billNo,jdbcType=VARCHAR},
+      </if>
+      <if test="buyDate != null">
+        #{buyDate,jdbcType=VARCHAR},
+      </if>
+      <if test="totalCost != null">
+        #{totalCost,jdbcType=DECIMAL},
+      </if>
+      <if test="flowFlag != null">
+        #{flowFlag,jdbcType=INTEGER},
+      </if>
+      <if test="inDateT != null">
+        #{inDateT,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="domain.T_InStock">
+    update t_instock
+    <set>
+      <if test="billNo != null">
+        BillNo = #{billNo.id,jdbcType=VARCHAR},
+      </if>
+      <if test="buyDate != null">
+        BuyDate = #{buyDate,jdbcType=VARCHAR},
+      </if>
+      <if test="totalCost != null">
+        TotalCost = #{totalCost,jdbcType=DECIMAL},
+      </if>
+      <if test="flowFlag != null">
+        FlowFlag = #{flowFlag,jdbcType=INTEGER},
+      </if>
+      <if test="inDateT != null">
+        InDateT = #{inDateT,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="domain.T_InStock">
+    update t_instock
+    set BillNo = #{billNo.id,jdbcType=VARCHAR},
+      BuyDate = #{buyDate,jdbcType=VARCHAR},
+      TotalCost = #{totalCost,jdbcType=DECIMAL},
+      FlowFlag = #{flowFlag,jdbcType=INTEGER},
+      InDateT = #{inDateT,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

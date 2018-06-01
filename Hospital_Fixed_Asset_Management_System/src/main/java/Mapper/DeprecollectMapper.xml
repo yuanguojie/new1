@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Mapper.DeprecollectMapper">
+  <resultMap type="domain.Deprecollect" id="BaseResultMap">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="asset" jdbcType="VARCHAR" property="asset" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
+    <result column="limitage" jdbcType="INTEGER" property="limitage" />
+    <result column="remain_ratio" jdbcType="DOUBLE" property="remain_ratio" />
+    <result column="deprecost" jdbcType="DOUBLE" property="deprecost" />
+    <result column="remain" jdbcType="DOUBLE" property="remain" />
+    <result column="addepre" jdbcType="DOUBLE" property="addepre" />
+    <result column="depretime" jdbcType="VARCHAR" property="depretime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, asset, price, limitage, remain_ratio, deprecost, remain, addepre, depretime
+  </sql>
+  <select id="SelectBydepre" parameterType="domain.Deprecollect" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from deprecollect
+    where depretime like #{depretime,jdbcType=VARCHAR}
+    <if test="asset != null &#38;&#38; asset != ''">
+    and asset = #{asset, jdbcType=VARCHAR}
+    </if>
+  </select>
+  <insert id="Insertdepreselective" parameterType="domain.Deprecollect">
+    insert into deprecollect
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+      	Id,
+      </if>
+      <if test="asset != null">
+      	asset,
+      </if>
+      <if test="price != null">
+      	price,
+      </if>
+      <if test="limitage != null">
+      	limitage,
+      </if>
+      <if test="remain_ratio != null">
+      	remain_ratio,
+      </if>
+      <if test="deprecost != null">
+      	deprecost,
+      </if>
+      <if test="remain != null">
+      	remain,
+      </if>
+      <if test="addepre != null">
+      	addepre,
+      </if>
+      <if test="depretime != null">
+      	depretime
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+     <if test="id != null">
+      	#{id,jdbcType=INTEGER},
+      </if>
+      <if test="asset != null">
+      	#{asset,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+      	#{price,jdbcType=DOUBLE},
+      </if>
+      <if test="limitage != null">
+      	#{limitage,jdbcType=INTEGER},
+      </if>
+      <if test="remain_ratio != null">
+      	#{remain_ratio,jdbcType=DOUBLE},
+      </if>
+      <if test="deprecost != null">
+      	#{deprecost,jdbcType=DOUBLE},
+      </if>
+      <if test="remain != null">
+      	#{remain,jdbcType=DOUBLE},
+      </if>
+      <if test="addepre != null">
+      	#{addepre,jdbcType=DOUBLE},
+      </if>
+      <if test="depretime != null">
+      	#{depretime,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </insert>
+</mapper>

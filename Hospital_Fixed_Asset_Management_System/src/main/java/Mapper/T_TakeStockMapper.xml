@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Mapper.T_TakeStockMapper">
+  <resultMap id="BaseResultMap" type="domain.T_TakeStock">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="BillNo" jdbcType="VARCHAR" property="billNo" />
+    <result column="TSDate" jdbcType="VARCHAR" property="TSDate" />
+    <result column="CheckDateT" jdbcType="VARCHAR" property="checkDateT" />
+    <result column="FlowFlag" jdbcType="INTEGER" property="flowFlag" />
+    <result column="DeptId" jdbcType="INTEGER" property="deptId" />
+    <result column="CreateEmpId" jdbcType="INTEGER" property="createEmpId" />
+    <result column="TakeEmpId" jdbcType="INTEGER" property="takeEmpId" />
+    <result column="StorageId" jdbcType="INTEGER" property="storageId" />
+    <result column="CheckEmpId" jdbcType="INTEGER" property="checkEmpId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, BillNo, TSDate, CheckDateT, FlowFlag, DeptId, CreateEmpId, TakeEmpId, StorageId, 
+    CheckEmpId
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_takestock
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByBillNo" parameterType="domain.T_TakeStock" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_takestock
+    <if test="billNo != null &#38;&#38; billNo != ''">
+    where BillNo = #{billNo,jdbcType=INTEGER}
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_takestock
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="domain.T_TakeStock">
+    insert into t_takestock (Id, BillNo, TSDate, 
+      CheckDateT, FlowFlag, DeptId, 
+      CreateEmpId, TakeEmpId, StorageId, 
+      CheckEmpId)
+    values (#{id,jdbcType=INTEGER}, #{billNo,jdbcType=VARCHAR}, #{TSDate,jdbcType=VARCHAR}, 
+      #{checkDateT,jdbcType=VARCHAR}, #{flowFlag,jdbcType=INTEGER}, #{deptId,jdbcType=INTEGER}, 
+      #{createEmpId,jdbcType=INTEGER}, #{takeEmpId,jdbcType=INTEGER}, #{storageId,jdbcType=INTEGER}, 
+      #{checkEmpId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="domain.T_TakeStock">
+    insert into t_takestock
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="billNo != null">
+        BillNo,
+      </if>
+      <if test="TSDate != null">
+        TSDate,
+      </if>
+      <if test="checkDateT != null">
+        CheckDateT,
+      </if>
+      <if test="flowFlag != null">
+        FlowFlag,
+      </if>
+      <if test="deptId != null">
+        DeptId,
+      </if>
+      <if test="createEmpId != null">
+        CreateEmpId,
+      </if>
+      <if test="takeEmpId != null">
+        TakeEmpId,
+      </if>
+      <if test="storageId != null">
+        StorageId,
+      </if>
+      <if test="checkEmpId != null">
+        CheckEmpId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="billNo != null">
+        #{billNo,jdbcType=VARCHAR},
+      </if>
+      <if test="TSDate != null">
+        #{TSDate,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDateT != null">
+        #{checkDateT,jdbcType=VARCHAR},
+      </if>
+      <if test="flowFlag != null">
+        #{flowFlag,jdbcType=INTEGER},
+      </if>
+      <if test="deptId != null">
+        #{deptId,jdbcType=INTEGER},
+      </if>
+      <if test="createEmpId != null">
+        #{createEmpId,jdbcType=INTEGER},
+      </if>
+      <if test="takeEmpId != null">
+        #{takeEmpId,jdbcType=INTEGER},
+      </if>
+      <if test="storageId != null">
+        #{storageId,jdbcType=INTEGER},
+      </if>
+      <if test="checkEmpId != null">
+        #{checkEmpId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="domain.T_TakeStock">
+    update t_takestock
+    <set>
+      <if test="billNo != null">
+        BillNo = #{billNo,jdbcType=VARCHAR},
+      </if>
+      <if test="TSDate != null">
+        TSDate = #{TSDate,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDateT != null">
+        CheckDateT = #{checkDateT,jdbcType=VARCHAR},
+      </if>
+      <if test="flowFlag != null">
+        FlowFlag = #{flowFlag,jdbcType=INTEGER},
+      </if>
+      <if test="deptId != null">
+        DeptId = #{deptId,jdbcType=INTEGER},
+      </if>
+      <if test="createEmpId != null">
+        CreateEmpId = #{createEmpId,jdbcType=INTEGER},
+      </if>
+      <if test="takeEmpId != null">
+        TakeEmpId = #{takeEmpId,jdbcType=INTEGER},
+      </if>
+      <if test="storageId != null">
+        StorageId = #{storageId,jdbcType=INTEGER},
+      </if>
+      <if test="checkEmpId != null">
+        CheckEmpId = #{checkEmpId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="domain.T_TakeStock">
+    update t_takestock
+    set BillNo = #{billNo,jdbcType=VARCHAR},
+      TSDate = #{TSDate,jdbcType=VARCHAR},
+      CheckDateT = #{checkDateT,jdbcType=VARCHAR},
+      FlowFlag = #{flowFlag,jdbcType=INTEGER},
+      DeptId = #{deptId,jdbcType=INTEGER},
+      CreateEmpId = #{createEmpId,jdbcType=INTEGER},
+      TakeEmpId = #{takeEmpId,jdbcType=INTEGER},
+      StorageId = #{storageId,jdbcType=INTEGER},
+      CheckEmpId = #{checkEmpId,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

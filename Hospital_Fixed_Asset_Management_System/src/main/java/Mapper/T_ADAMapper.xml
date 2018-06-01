@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Mapper.T_ADAMapper">
+  <resultMap id="BaseResultMap" type="domain.T_ADA">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="Name" jdbcType="VARCHAR" property="name" />
+    <result column="OAddr" jdbcType="VARCHAR" property="OAddr" />
+    <result column="NAddr" jdbcType="VARCHAR" property="NAddr" />
+    <result column="OutDeptid" jdbcType="INTEGER" property="outDeptid" />
+    <result column="InDeptid" jdbcType="INTEGER" property="inDeptid" />
+    <result column="OutEmpid" jdbcType="INTEGER" property="outEmpid" />
+    <result column="InEmpid" jdbcType="INTEGER" property="inEmpid" />
+    <result column="AllocateDate" jdbcType="TIMESTAMP" property="allocateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, Name, OAddr, NAddr, OutDeptid, InDeptid, OutEmpid, InEmpid, AllocateDate
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_ada
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByName" parameterType="domain.T_ADA" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_ada
+    <if test="name != null &#38;&#38; name != ''">
+    where Name = #{name,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_ada
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="domain.T_ADA">
+    insert into t_ada (Id, Name, OAddr, 
+      NAddr, OutDeptid, InDeptid, 
+      OutEmpid, InEmpid, AllocateDate
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{OAddr,jdbcType=VARCHAR}, 
+      #{NAddr,jdbcType=VARCHAR}, #{outDeptid,jdbcType=INTEGER}, #{inDeptid,jdbcType=INTEGER}, 
+      #{outEmpid,jdbcType=INTEGER}, #{inEmpid,jdbcType=INTEGER}, #{allocateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="domain.T_ADA">
+    insert into t_ada
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="name != null">
+        Name,
+      </if>
+      <if test="OAddr != null">
+        OAddr,
+      </if>
+      <if test="NAddr != null">
+        NAddr,
+      </if>
+      <if test="outDeptid != null">
+        OutDeptid,
+      </if>
+      <if test="inDeptid != null">
+        InDeptid,
+      </if>
+      <if test="outEmpid != null">
+        OutEmpid,
+      </if>
+      <if test="inEmpid != null">
+        InEmpid,
+      </if>
+      <if test="allocateDate != null">
+        AllocateDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="OAddr != null">
+        #{OAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="NAddr != null">
+        #{NAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="outDeptid != null">
+        #{outDeptid,jdbcType=INTEGER},
+      </if>
+      <if test="inDeptid != null">
+        #{inDeptid,jdbcType=INTEGER},
+      </if>
+      <if test="outEmpid != null">
+        #{outEmpid,jdbcType=INTEGER},
+      </if>
+      <if test="inEmpid != null">
+        #{inEmpid,jdbcType=INTEGER},
+      </if>
+      <if test="allocateDate != null">
+        #{allocateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="domain.T_ADA">
+    update t_ada
+    <set>
+      <if test="name != null">
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="OAddr != null">
+        OAddr = #{OAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="NAddr != null">
+        NAddr = #{NAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="outDeptid != null">
+        OutDeptid = #{outDeptid,jdbcType=INTEGER},
+      </if>
+      <if test="inDeptid != null">
+        InDeptid = #{inDeptid,jdbcType=INTEGER},
+      </if>
+      <if test="outEmpid != null">
+        OutEmpid = #{outEmpid,jdbcType=INTEGER},
+      </if>
+      <if test="inEmpid != null">
+        InEmpid = #{inEmpid,jdbcType=INTEGER},
+      </if>
+      <if test="allocateDate != null">
+        AllocateDate = #{allocateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="domain.T_ADA">
+    update t_ada
+    set Name = #{name,jdbcType=VARCHAR},
+      OAddr = #{OAddr,jdbcType=VARCHAR},
+      NAddr = #{NAddr,jdbcType=VARCHAR},
+      OutDeptid = #{outDeptid,jdbcType=INTEGER},
+      InDeptid = #{inDeptid,jdbcType=INTEGER},
+      OutEmpid = #{outEmpid,jdbcType=INTEGER},
+      InEmpid = #{inEmpid,jdbcType=INTEGER},
+      AllocateDate = #{allocateDate,jdbcType=TIMESTAMP}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

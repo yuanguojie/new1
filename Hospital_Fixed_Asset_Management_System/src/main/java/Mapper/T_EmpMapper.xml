@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Mapper.T_EmpMapper">
+  <resultMap id="BaseResultMap" type="domain.T_Emp">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="Name" jdbcType="VARCHAR" property="name" />
+    <result column="IdCard" jdbcType="VARCHAR" property="idCard" />
+    <result column="Tel" jdbcType="VARCHAR" property="tel" />
+    <result column="Addr" jdbcType="VARCHAR" property="addr" />
+    <result column="InWorkDate" jdbcType="TIMESTAMP" property="inWorkDate" />
+    <result column="ExitDate" jdbcType="TIMESTAMP" property="exitDate" />
+    <result column="Status" jdbcType="INTEGER" property="status" />
+    <result column="DeptId" jdbcType="INTEGER" property="deptId" />
+    <result column="SysUserId" jdbcType="INTEGER" property="sysUserId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, Name, IdCard, Tel, Addr, InWorkDate, ExitDate, Status, DeptId, SysUserId
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_emp
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByName" parameterType="domain.T_Emp" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_emp 
+    <if test="name != null &#38;&#38; name != ''">
+    where Name = #{name,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_emp
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="domain.T_Emp">
+    insert into t_emp (Id, Name, IdCard, 
+      Tel, Addr, InWorkDate, 
+      ExitDate, Status, DeptId, 
+      SysUserId)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR}, #{inWorkDate,jdbcType=TIMESTAMP}, 
+      #{exitDate,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{deptId,jdbcType=INTEGER}, 
+      #{sysUserId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="domain.T_Emp">
+    insert into t_emp
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="name != null">
+        Name,
+      </if>
+      <if test="idCard != null">
+        IdCard,
+      </if>
+      <if test="tel != null">
+        Tel,
+      </if>
+      <if test="addr != null">
+        Addr,
+      </if>
+      <if test="inWorkDate != null">
+        InWorkDate,
+      </if>
+      <if test="exitDate != null">
+        ExitDate,
+      </if>
+      <if test="status != null">
+        Status,
+      </if>
+      <if test="deptId != null">
+        DeptId,
+      </if>
+      <if test="sysUserId != null">
+        SysUserId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="addr != null">
+        #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="inWorkDate != null">
+        #{inWorkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="exitDate != null">
+        #{exitDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="deptId != null">
+        #{deptId,jdbcType=INTEGER},
+      </if>
+      <if test="sysUserId != null">
+        #{sysUserId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="domain.T_Emp">
+    update t_emp
+    <set>
+      <if test="name != null">
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        IdCard = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        Tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="addr != null">
+        Addr = #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="inWorkDate != null">
+        InWorkDate = #{inWorkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="exitDate != null">
+        ExitDate = #{exitDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        Status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="deptId != null">
+        DeptId = #{deptId,jdbcType=INTEGER},
+      </if>
+      <if test="sysUserId != null">
+        SysUserId = #{sysUserId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="domain.T_Emp">
+    update t_emp
+    set Name = #{name,jdbcType=VARCHAR},
+      IdCard = #{idCard,jdbcType=VARCHAR},
+      Tel = #{tel,jdbcType=VARCHAR},
+      Addr = #{addr,jdbcType=VARCHAR},
+      InWorkDate = #{inWorkDate,jdbcType=TIMESTAMP},
+      ExitDate = #{exitDate,jdbcType=TIMESTAMP},
+      Status = #{status,jdbcType=INTEGER},
+      DeptId = #{deptId,jdbcType=INTEGER},
+      SysUserId = #{sysUserId,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

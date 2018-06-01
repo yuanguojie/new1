@@ -1,0 +1,60 @@
+@CHARSET "UTF-8";
+
+   body{
+       background:rgb(28, 119, 172) url("../images/loginbg3.png") no-repeat center top ;
+   }
+   .loginTop{
+     height: 25%;
+     background: url(../images/loginlogo2.png) bottom center no-repeat;
+     background-size:30%;
+   }
+   .loginCentr{
+     height:70%;
+     background: url(../images/logininfo.png) top center no-repeat;
+   }
+   .registerCentr{
+     height:70%;
+     background: url(../images/registerinfo.png) top center no-repeat;
+     background-size: 830px 403px; 
+   }
+    .loginfooter{
+     height:5%;
+     background:  url(../images/loginbg2.png) repeat-x;
+     text-align: center;
+     font-size: 11px;
+   }
+  .loginfooter a{
+     color: #0b3a58
+   }
+   .divCenter{
+	   width:450px;
+	   height:230px;
+	   margin: 0 auto;
+	   padding-top:75px ;
+
+   } 
+   input{
+	   width:280px;
+	   height:30px;
+	   padding:12px;
+   }
+   .divCenter div{
+	   margin-bottom:15px;
+	   padding-left: 150px;
+   }
+   .loginCentr div button {
+	 border-radius: 5px;
+	 width: 150px;
+	 height: 40px;
+	 border: none;
+	 color: white;
+	 background-color: #3a94c8;
+}
+	.registerCentr div button {
+		 border-radius: 5px;
+		 width: 150px;
+		 height: 40px;
+		 border: none;
+		 color: white;
+		 background-color: #3a94c8;
+	}

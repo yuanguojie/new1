@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Mapper.SysMenu_SysRoleMapper">
+  <resultMap id="BaseResultMap" type="domain.SysMenu_SysRoleKey">
+    <id column="SysMenuId" jdbcType="INTEGER" property="sysMenuId" />
+    <id column="SysRoleId" jdbcType="INTEGER" property="sysRoleId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="domain.SysMenu_SysRoleKey">
+    delete from sysmenu_sysrole
+    where SysMenuId = #{sysMenuId,jdbcType=INTEGER}
+      and SysRoleId = #{sysRoleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="domain.SysMenu_SysRoleKey">
+    insert into sysmenu_sysrole (SysMenuId, SysRoleId)
+    values (#{sysMenuId,jdbcType=INTEGER}, #{sysRoleId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="domain.SysMenu_SysRoleKey">
+    insert into sysmenu_sysrole
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sysMenuId != null">
+        SysMenuId,
+      </if>
+      <if test="sysRoleId != null">
+        SysRoleId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sysMenuId != null">
+        #{sysMenuId,jdbcType=INTEGER},
+      </if>
+      <if test="sysRoleId != null">
+        #{sysRoleId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="selectMenu_Role" parameterType="domain.SysMenu_SysRoleKey" resultMap="BaseResultMap">
+  	select * from sysmenu_sysrole
+  <if test="sysMenuId != null &#38;&#38; sysMenuId != ''">
+  	where SysMenuId = #{sysMenuId,jdbcType=INTEGER}
+  	<if test="sysRoleId != null &#38;&#38; sysRoleId != ''">
+  		and SysRoleId = #{sysRoleId,jdbcType=INTEGER}
+  	</if>
+  </if>
+  <if test="sysMenuId == null || sysMenuId == ''">
+    <if test="sysRoleId != null &#38;&#38; sysRoleId != ''">
+  		SysRoleId = #{sysRoleId,jdbcType=INTEGER}
+  	</if>
+  </if>
+  </select>
+</mapper>
