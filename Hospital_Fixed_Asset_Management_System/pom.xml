@@ -19,7 +19,7 @@
         <commons-logging.version>1.2</commons-logging.version>
         <commons-lang3.version>3.3.2</commons-lang3.version>
         <commons-io.version>2.4</commons-io.version>
-        <commons-fileupload.version>1.3.1</commons-fileupload.version>
+        <commons-fileupload.version>1.5</commons-fileupload.version>
         <!--日志包-->
         <log4j.version>1.2.17</log4j.version>
 
@@ -31,25 +31,25 @@
 
 
         <!--Spring/Spring MVC 相关包-->
-        <springframework.version>5.0.0.RELEASE</springframework.version>
+        <springframework.version>6.0.14</springframework.version>
         <!--JSON与POJO互转：@RequestBody、@ResponseBody-->
-        <jackson.version>2.10.3</jackson.version>
+        <jackson.version>2.12.7.1</jackson.version>
         <!--表单验证-->
-        <hibernate-validator.version>5.4.1.Final</hibernate-validator.version>
+        <hibernate-validator.version>5.4.2.Final</hibernate-validator.version>
 
         <!--MyBatis相关包-->
-        <mybatis.version>3.4.5</mybatis.version>
+        <mybatis.version>3.5.6</mybatis.version>
         <mybatis-spring.version>1.3.1</mybatis-spring.version>
         <!--MyBatis代码自动生成插件：MyBatis Generator-->
         <mybatis-generator.version>1.3.2</mybatis-generator.version>
         <hairy.mybatis-generator.version>1.0.1</hairy.mybatis-generator.version>
         <!--MyBatis分页查询插件-->
-        <pagehelper.version>5.1.2</pagehelper.version>
+        <pagehelper.version>5.3.1</pagehelper.version>
         <!--数据库包-->
         <mysql.version>5.1.40</mysql.version>
 
         <!--单元测试包-->
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
     </properties>
     <dependencies>
         <!--基本包-->
