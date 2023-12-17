@@ -49,7 +49,7 @@
         <mysql.version>5.1.40</mysql.version>
 
         <!--单元测试包-->
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
     </properties>
     <dependencies>
         <!--基本包-->
