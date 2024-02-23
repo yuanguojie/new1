@@ -31,7 +31,7 @@
 
 
         <!--Spring/Spring MVC 相关包-->
-        <springframework.version>6.0.14</springframework.version>
+        <springframework.version>6.0.17</springframework.version>
         <!--JSON与POJO互转：@RequestBody、@ResponseBody-->
         <jackson.version>2.12.7.1</jackson.version>
         <!--表单验证-->
